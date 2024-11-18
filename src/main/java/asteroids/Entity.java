@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public abstract class Entity extends JPanel{
     
-    private Vec2 pos;    
+    protected Vec2 pos;    
 
     /**
      * Consturctor
