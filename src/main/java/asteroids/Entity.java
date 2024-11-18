@@ -1,10 +1,6 @@
 package asteroids;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 
 /**
  * This class is the Entity class. Everything that is renderable inherits from this class.
@@ -21,5 +17,9 @@ public abstract class Entity extends JPanel{
     protected Entity(double x, double y){
         pos.setX(x);
         pos.setY(y);
+    }
+
+    public Vec2 getPos(){
+        return pos;
     }
 }
