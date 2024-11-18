@@ -25,7 +25,7 @@ public abstract class FlyingEntity extends Entity {
      * Moves the flying-entity.
      */
     public void move(){
-        pos.add(vel.getMultipliedVecByLambda(1/60)); //multiplied by 60 because it is 60 frame per second.
+        pos.add(vel.getMultipliedVecByLambda(1.0/60.0)); //multiplied by 60 because it is 60 frame per second.
     }
 
 }
