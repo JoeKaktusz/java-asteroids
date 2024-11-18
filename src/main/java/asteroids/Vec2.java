@@ -111,21 +111,12 @@ public class Vec2 {
     }
 
     /**
-     * Converts degree to radian for the built in Math.sin/cos functions which takes radians as its parameters
-     * @param degree
-     * @return
-     */
-    private double degToRad(double degree){
-        return (Math.PI / 180) * degree;
-    }
-
-    /**
      * rotate the vector by degree clock wisely.
      * @param degree
      */
     public void rotate(double degree){
-        double newX = (Math.cos(degToRad(degree))) * x - (Math.sin(degToRad(degree))*y);
-        double newY = (Math.sin(degToRad(degree))) * x + (Math.cos(degToRad(degree))*y);
+        double newX = (Math.cos(Math.toRadians(degree))) * x - (Math.sin(Math.toRadians(degree))*y);
+        double newY = (Math.sin(Math.toRadians(degree))) * x + (Math.cos(Math.toRadians(degree))*y);
         x = newX;
         y = newY;
     }
