@@ -8,7 +8,7 @@ public class Vec2 {
     private double y;
     
     /**
-     * 
+     * Constructor
      * @param x
      * @param y
      */
@@ -18,56 +18,56 @@ public class Vec2 {
     }
     
     /**
-     * 
-     * @return
+     * X getter
+     * @return x
      */
     public double getX(){
         return x;
     }
     
     /**
-     * 
-     * @return
+     * Y getter
+     * @return y
      */
     public double getY(){
         return y;
     }
     
     /**
-     * 
-     * @return
+     * get x's rounded value
+     * @return x's rounded value
      */
     public int getRoundedX(){
         return (int) Math.round(x);
     }
     
     /**
-     * 
-     * @return
+     * get y's rounded value
+     * @return y's rounded value
      */
     public int getRoundedY(){
         return (int) Math.round(y);
     }
     
     /**
-     * 
-     * @param x
+     * x setter
+     * @param x x's new value
      */
     public void setX(double x){
         this.x = x;
     }
     
     /**
-     * 
-     * @param y
+     * y setter
+     * @param y y's new value
      */
     public void setY(double y){
         this.y = y;
     }
     
     /**
-     * 
-     * @param vec
+     * Add the vector to the current one.
+     * @param vec   
      */
     public void add(Vec2 vec){
         x += vec.x;
@@ -75,8 +75,8 @@ public class Vec2 {
     }
     
     /**
-     * 
-     * @param lambda
+     * Multiplies the vector by lambda
+     * @param lambda lambda value
      */
     public void multiplyBylambda(double lambda){
         x*=lambda;
@@ -84,16 +84,18 @@ public class Vec2 {
     }
     
     /**
-     * 
+     * multiplies the vector by lambda and return it as a new vec2
      * @param lambda
-     * @return
+     * @return the new vec2
      */
     public Vec2 getMultipliedVecByLambda(double lambda){
         return new Vec2(x*lambda, y*lambda);
     }
     
+    
+
     /**
-     * 
+     * return the negated of the vector.
      * @return
      */
     public Vec2 negative(){
@@ -101,7 +103,7 @@ public class Vec2 {
     }
         
     /**
-     * 
+     * subtract the vec parameter with 
      * @param vec
      */
     public void subtract(Vec2 vec){
@@ -109,31 +111,53 @@ public class Vec2 {
     }
 
     /**
-     * 
-     * @param vec1
-     * @param vec2
+     * Converts degree to radian for the built in Math.sin/cos functions which takes radians as its parameters
+     * @param degree
      * @return
      */
-    public static Vec2 add(Vec2 vec1, Vec2 vec2){
-        return new Vec2(vec1.x + vec2.x, vec1.y + vec2.y);
+    private double degToRad(double degree){
+        return (Math.PI / 180) * degree;
     }
 
-    private double degToRad(double angle){
-        return (Math.PI / 180) * angle;
-    }
-
-    public void rotateByAngle(double angle){
-        double newX = (Math.cos(degToRad(angle))) * x - (Math.sin(degToRad(angle))*y);
-        double newY = (Math.sin(degToRad(angle))) * x + (Math.cos(degToRad(angle))*y);
+    /**
+     * rotate the vector by degree clock wisely.
+     * @param degree
+     */
+    public void rotate(double degree){
+        double newX = (Math.cos(degToRad(degree))) * x - (Math.sin(degToRad(degree))*y);
+        double newY = (Math.sin(degToRad(degree))) * x + (Math.cos(degToRad(degree))*y);
         x = newX;
         y = newY;
     }
 
-    public void rotateByRadian(double radian){
-        double newX = (Math.cos(radian)) * x - (Math.sin(radian)*y);
-        double newY = (Math.sin(radian)) * x + (Math.cos(radian)*y);
-        x = newX;
-        y = newY;
+    /**
+     * Returns the absolute value of the vector.
+     * @return
+     */
+    public double abs(){
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y,2));
+    }
+
+    /**
+     * Set the length (absolute value) of the vector to 1.
+     */
+    public void normalize(){
+        double abs = abs();
+        if(abs != 0){
+            x *= (1/abs);
+            y *= (1/abs);
+        }
+    }
+
+    /**
+     * Transform the vector's absolute value (length) to the new value.
+     * @param newAbs
+     */
+    public void setAbs(double newAbs){
+        normalize();
+        if (abs() != 0){
+            multiplyBylambda(newAbs);
+        }
     }
 
 }

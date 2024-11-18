@@ -1,7 +1,5 @@
 package asteroids;
 
-
-
 public enum State {
     MAIN_MENU,
     PLAY,
