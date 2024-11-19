@@ -7,7 +7,7 @@ package asteroids;
 public abstract class FlyingEntity extends Entity {
     
     protected Vec2 vel; //this is in m/s
-    protected double rad;
+    protected double radius;
     /**
      * Constructor for flying entity
      * @param posX
@@ -15,10 +15,11 @@ public abstract class FlyingEntity extends Entity {
      * @param velX
      * @param velY
      */
-    protected FlyingEntity(double posX, double posY, double velX, double velY){
+    protected FlyingEntity(double posX, double posY, double velX, double velY,double radius){
         super(posX, posY);
         vel.setX(velX);
         vel.setY(velY);
+        this.radius = radius;
     }
 
     /**
@@ -37,6 +38,21 @@ public abstract class FlyingEntity extends Entity {
         vel = newVel;
     }
 
+    /**
+     * Radius getter
+     * @return
+     */
+    public double getRadius(){
+        return radius;
+    }
+
+    /**
+     * Radius setter
+     * @param newRadius
+     */
+    public void setRadius(double newRadius){
+        radius = newRadius;
+    }
 
     /**
      * Moves the flying-entity.
